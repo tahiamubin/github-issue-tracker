@@ -23,8 +23,100 @@
     referrerpolicy="no-referrer"
   />
 
-  <body>
-    <h1>hiiiiii</h1>
-    <script src="script/signin.js"></script>
+  <body class=" w-11/12 mx-auto" >
+    <!-- search section -->
+    <section class="w-11/12 mx-auto">
+      <div class="join">
+  <div>
+    <label class="input validator join-item">
+      <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <g
+          stroke-linejoin="round"
+          stroke-linecap="round"
+          stroke-width="2.5"
+          fill="none"
+          stroke="currentColor"
+        >
+          <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+        </g>
+      </svg>
+      <input type="email" placeholder="mail@site.com" required />
+    </label>
+    <div class="validator-hint hidden">Enter valid email address</div>
+  </div>
+  <button class="btn btn-neutral join-item">Join</button>
+</div>
+    </section>
+
+    
+     <section>
+      <!-- top button -->
+      <section class="mt-12 ml-5  bg-white p-5 justify-around">
+        <div>
+          <button id="all-btn" onclick="loadIssueButton()" class="btn btn-outline btn-primary">All</button>
+          <button class="btn btn-outline btn-primary">Open</button>
+          <button class="btn btn-outline btn-primary">Close</button>
+        </div>
+     </section>
+
+     <!-- issues-container -->
+      <div class="flex justify-between p-10 bg-white border-purple-600 p-4 ">
+        <div class="flex gap-8">
+          <img src="assets/Aperture.png" alt="" class="bg-purple-200 p-4 rounded-s-3xl">
+          <div>
+            <h1 class="text-2xl font-bold">50 issues</h1>
+            <p class=" font-semibold">Track and manage your project issues</p>
+          </div>
+        </div>
+        <div>
+          <p  class="flex gap-4 ">
+            <span><img src="assets/Open-Status.png" alt=""></span>Open
+          </p>
+          <p class="flex gap-4">
+            <span><img src="assets/Closed- Status .png" alt=""></span>Closed
+          </p>
+         
+        </div>
+      </div>
+
+      <!-- container -->
+
+      <div class="grid grid-cols-4 gap-3">
+        <!-- cards -->
+        <div id="issueCards" class="card space-y-4 bg-white">
+          <!-- top -->
+          <div class=" flex justify-between p-4 ">
+            <img src="assets/Open-Status.png" alt="">
+            <button class="bg-red-100 py-2 px-8 rounded-lg  text-red-600 ">High</button>
+          </div>
+           <!-- middle -->
+          <div class="space-y-4">
+            <h1 class="text-xl font-bold text-[#1F2937]">Fix navigation menu on mobile devices</h1>
+            <p class=" text-[#1F2937] line-clamp-2">The navigation menu doesn't collapse properly on mobile devices...</p>
+             <div class="inner-butt">
+              <button class="bg-red-100 py-2 px-8 rounded-lg  text-red-600 "> <i class="fa-solid fa-bug"></i> Bug</button>
+              <button class="bg-[#D97706]/20 py-2 px-8 rounded-lg  text-[#D97706] "> <i class="fa-solid fa-life-ring"></i> Help Wanted</button>
+             </div>
+          </div>
+           <!-- end -->
+            <div class="text-xl text-[#1F2937]">
+              <p><span>#1</span> by <span>john_doe</span></p>
+              <p>1/15/2024</p>
+            </div>
+        </div>
+      </div>
+
+      <section>
+        <div>
+
+        </div>
+      </section>
+
+     </section>
+
+
+
+    <script src="script/home.js"></script>
   </body>
 </html>
