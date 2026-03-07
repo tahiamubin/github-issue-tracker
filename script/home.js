@@ -1,22 +1,19 @@
+let allCard = [];
 
 const createElement = (arr) => {
     const htmlElement = arr.map((el)=>
     `
-    <span class =  "bg-[#D97706]/20 text-[#D97706] border-[#] btn rounded-xl" > ${el} </span>
+    <span class =  "bg-[#BBF7D0] text-[#00A96E] border-[#00A96E] btn rounded-xl" > ${el} </span>
     `)
     return (htmlElement.join(" "));
     
 }
-
-console.log("home file is connected");
-
-function loadIssueButton(){
-
+ async function loadIssueButton(){ 
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
-    fetch(url)
-    .then(res => res.json())
-    .then(json => displayIssueButton(json.data))
-    
+    const res = await fetch (url);
+    const data = await (res.json());
+    allCard = data.data;
+    displayIssueButton(allCard)
 }
 loadIssueButton();
 
@@ -33,6 +30,8 @@ loadIssueButton();
 // "assignee": "jane_smith",
 // "createdAt": "2024-01-15T10:30:00Z",
 // "updatedAt": "2024-01-15T10:30:00Z"
+
+
 const priorityColor = {
   high: "bg-red-100  text-red-600 font-bold",
   medium: "bg-[#D97706]/20 text-[#D97706] border-[#D97706] font-bold",
@@ -55,7 +54,6 @@ function displayIssueButton (cards){
         <div id="issueCards" class="card space-y-4 bg-white p-4 shadow-xl">
           <!-- top -->
           <div class=" flex justify-between p-4 ">
-            <img src="assets/Open-Status.png" alt="" class="max-h-20 ">
             <button class="${priorityColor[card.priority]} py-2 px-8 rounded-lg ">${card.priority}</button>
           </div>
            <!-- middle -->
@@ -68,7 +66,7 @@ function displayIssueButton (cards){
              </div>
           </div>
            <!-- end -->
-            <div class="text-xl text-[#1F2937]">
+            <div class="text-xl text-[#1F2937] space-y-2">
               <p><span>#${card.id}</span> by <span>${card.assignee ? card.assignee : 'No name found' }</span></p>
               <p>${new Date(card.createdAt).getMonth()+1}/${new Date(card.createdAt).getDate()}/${new Date(card.createdAt).getFullYear()}</p>
             </div>
@@ -76,5 +74,27 @@ function displayIssueButton (cards){
         `
        issueCardContainer.append(issueCard) ;
     }
+
+}
+
+const removeActive = () => {
+    const buttons = document.querySelectorAll(".show");
+  buttons.forEach((btn) => btn.classList.remove("active"));
+}
+
+function showOpenCard (button) {
+  const openCard = allCard.filter(data => data.status =="open");
+   removeActive();
+  button.classList.add("active");
+  displayIssueButton(openCard);
+ 
+}
+
+function showClosedCard(button){
+  const closeCard = allCard.filter (data => data.status === "closed");
+  removeActive();
+  button.classList.add("active");
+  displayIssueButton(closeCard);
+ 
 
 }

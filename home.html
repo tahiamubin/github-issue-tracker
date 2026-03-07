@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-  </head>
-
-  <!-- tailwind and daisyui -->
+    <!-- tailwind and daisyui -->
   <link
     href="https://cdn.jsdelivr.net/npm/daisyui@5"
     rel="stylesheet"
@@ -22,6 +20,12 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+
+  <!-- style -->
+   <link rel="stylesheet" href="script/style.css">
+  </head>
+
+  
 
   <body class="w-11/12 mx-auto">
     <!-- search section -->
@@ -64,8 +68,8 @@
           >
             All
           </button>
-          <button class="btn btn-outline btn-primary">Open</button>
-          <button class="btn btn-outline btn-primary">Close</button>
+          <button onclick="showOpenCard(this)" class="btn btn-outline btn-primary show">Open</button>
+          <button  onclick="showClosedCard(this)" class="btn btn-outline btn-primary show">Close</button>
         </div>
       </section>
 
@@ -94,7 +98,7 @@
 
       <!-- container -->
 
-      <div id="issueCards" class="bg-gray-100 border-red-600 p-10 w-11/12 mx-auto my-10 grid grid-cols-3 gap-5">
+      <div id="issueCards" class="bg-gray-100 border-red-600 p-10 w-11/12 mx-auto my-10 grid grid-cols-1 gap-5 md:grid-cols-3 ">
         <!-- cards -->
         <!-- <div  class="card space-y-4 bg-white shadow-lg">
            top
@@ -124,7 +128,7 @@
             </div>
           </div>
            end
-          <div class="text-xl text-[#1F2937]">
+          <div class="text-xl text-[#1F2937] space-y-3">
             <p><span>#1</span> by <span>john_doe</span></p>
             <p>1/15/2024</p>
           </div>
