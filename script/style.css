@@ -2,3 +2,9 @@
     background: #4A00FF;
     color : white ;
 }
+.purpleOutline {
+    border-top: 7px solid #A855F7;
+}
+.greenOutline {
+    border-top: 7px solid #00A96E;
+}
