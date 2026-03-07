@@ -19,10 +19,16 @@ const removeActive = () => {
     allCard = data.data;
     removeActive();
     button.classList.add("active");
-    displayIssueButton(allCard)
+    displayIssueButton(allCard);
 }
-loadIssueButton();
 
+loadIssueButton();
+ async function loadCardDetails(id){ 
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+    const res = await fetch (url);
+    const data = await (res.json());
+    displayCardModal(data.data);
+}
 // "id": 1,
 // "title": "Fix navigation menu on mobile devices",
 // "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
@@ -36,6 +42,60 @@ loadIssueButton();
 // "assignee": "jane_smith",
 // "createdAt": "2024-01-15T10:30:00Z",
 // "updatedAt": "2024-01-15T10:30:00Z"
+
+displayCardModal =(cards) => {
+   const modalCard = document.getElementById("my_modal_5");
+   modalCard.innerHTML = 
+    `
+    <div class="modal-box m-10 space-y-4">
+    <h1 class="text-2xl font-bold">${cards.title}</h1>
+    <!-- status -->
+    <div class=" flex gap-4 my-2">
+      <button class="bg-[#00A96E] rounded-full px-3 py-1 text-white">${cards.status}</button>
+      <p> Opened by ${cards.assignee}</p>
+      <p>${cards.updatedAt}</p>
+    </div>
+
+    <!-- issue buttons -->
+    <div>
+       <button class=" py-2  rounded-lg">
+        ${createElement(cards.labels)}
+      </button>
+       
+     
+    </div>
+
+    <!-- description -->
+     <div>
+      <p class="text-[#64748B] ">The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.</p>
+     </div>
+
+     <!-- author -->
+      <div class="bg-gray-50 py-2 px-4 rounded-md flex gap-x-40">
+        <div>
+          <p class="text-[#64748B]">Assignee:</p>
+          <h1 class="font-bold">${cards.assignee}</h1>
+        </div>
+        <div>
+          <p class="text-[#64748B]">Priority:</p>
+          <button class="btn bg-red-200 text-[red] rounded-md">${cards.priority}</button>
+        </div>
+        
+      </div>
+        <!-- if there is a button in form, it will close the modal -->
+       <form method="dialog">
+        
+        <button class="btn btn-primary ">Close</button>
+      </form>
+    </div>
+    
+    `
+   document.getElementById("my_modal_5").showModal();
+
+
+}
+
+
 
 
 const priorityColor = {
@@ -67,9 +127,9 @@ function displayIssueButton (cards){
        const issueCard = document.createElement("div");
         issueCard.innerHTML = `
         <!-- cards -->
-      <div id="issueCards" >
+      <div id="issueCards"  onclick="loadCardDetails(${card.id})">
           <!-- cards -->
-             <div id="eachCard"  class="card space-y-4 bg-white p-4 shadow-xl ${cardBorder(card.status)}">
+             <div  id="eachCard"  class="card space-y-4 bg-white p-4 shadow-xl ${cardBorder(card.status)}">
           <!-- top -->
               <div  class=" flex justify-between p-4 ">
             <button class="${priorityColor[card.priority]} py-2 px-8 rounded-lg ">${card.priority}</button>
