@@ -8,11 +8,17 @@ const createElement = (arr) => {
     return (htmlElement.join(" "));
     
 }
- async function loadIssueButton(){ 
+const removeActive = () => {
+  const buttons = document.querySelectorAll(".show");
+  buttons.forEach((btn) => btn.classList.remove("active"));
+}
+ async function loadIssueButton(button){ 
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
     const res = await fetch (url);
     const data = await (res.json());
     allCard = data.data;
+    removeActive();
+    button.classList.add("active");
     displayIssueButton(allCard)
 }
 loadIssueButton();
@@ -77,10 +83,7 @@ function displayIssueButton (cards){
 
 }
 
-const removeActive = () => {
-    const buttons = document.querySelectorAll(".show");
-  buttons.forEach((btn) => btn.classList.remove("active"));
-}
+
 
 function showOpenCard (button) {
   const openCard = allCard.filter(data => data.status =="open");
