@@ -1,5 +1,19 @@
 let allCard = [];
 
+
+const manageSpinner = (status) =>{
+  if (status == true){
+    document.getElementById("spinner").classList.add("hidden");
+    document.getElementById("issueCards").classList.remove("hidden");
+  }
+  else {
+    document.getElementById("issueCards").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
+  }
+
+}
+
+
 const createElement = (arr) => {
     const htmlElement = arr.map((el)=>
     `
@@ -13,6 +27,7 @@ const removeActive = () => {
   buttons.forEach((btn) => btn.classList.remove("active"));
 }
  async function loadIssueButton(button){ 
+   manageSpinner(true);
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
     const res = await fetch (url);
     const data = await (res.json());
@@ -29,6 +44,8 @@ loadIssueButton();
     const data = await (res.json());
     displayCardModal(data.data);
 }
+
+
 // "id": 1,
 // "title": "Fix navigation menu on mobile devices",
 // "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
@@ -152,7 +169,9 @@ function displayIssueButton (cards){
       </div>
         `
        issueCardContainer.append(issueCard) ;
+       manageSpinner(false);
     }
+    
 
 }
 
@@ -177,3 +196,18 @@ function showClosedCard(button){
  
 
 }
+
+document.getElementById("issueBtn").addEventListener("click" , () =>{
+  const input = document.getElementById("searchInput");
+  const inputValue = input.value.trim().toLowerCase();
+  console.log(inputValue)
+  fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+  .then(res => res.json())
+  .then((data) => {
+    const allWord = data.data;
+    const filterWords = allWord.filter((data) => data.title.toLowerCase().includes(inputValue));
+    console.log(filterWords)
+   displayIssueButton(filterWords);
+
+  })
+})

@@ -27,34 +27,30 @@
 
   
 
-  <body class="w-11/12 mx-auto">
+  <body class=" mx-auto">
     <!-- search section -->
-    <section class="w-11/12 mx-auto">
+    <section class="flex items-center justify-between p-4">
+      <section class="flex gap-4 items-center ">
+        <div>
+          <img src="assets/github-logo.png" alt="" >
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold">GitHub Issues Tracker</h1>
+        </div>
+      </section>
+
+      <section class="">
       <div class="join">
         <div>
           <label class="input validator join-item">
-            <svg
-              class="h-[1em] opacity-50"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <g
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke-width="2.5"
-                fill="none"
-                stroke="currentColor"
-              >
-                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-              </g>
-            </svg>
-            <input type="email" placeholder="mail@site.com" required />
+            
+            <input id="searchInput"  type="text" placeholder="Search issues..." required />
           </label>
-          <div class="validator-hint hidden">Enter valid email address</div>
+         
         </div>
-        <button class="btn btn-neutral join-item">Join</button>
+        <button id="issueBtn" class="btn btn-primary join-item"><span><i class="fa-solid fa-plus"></i></span>New Issue</button>
       </div>
+    </section>
     </section>
 
     <section>
@@ -97,6 +93,10 @@
       </div>
 
       <!-- container -->
+
+       <section id="spinner" class="justify-center items-center flex p-10 hidden">
+        <span class="loading loading-bars loading-xl"></span>
+        </section>
 
       <div id="issueCards" class="bg-gray-100 border-red-600 p-10 w-11/12 mx-auto my-10 grid grid-cols-1 gap-5 md:grid-cols-4 ">
         <!-- cards -->
