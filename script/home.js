@@ -16,8 +16,10 @@ const removeActive = () => {
   const buttons = document.querySelectorAll(".show");
   buttons.forEach((btn) => btn.classList.remove("active"));
 }
+
  async function loadIssueButton(button){ 
     manageSpinner(true);
+    
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
     const res = await fetch (url);
     const data = await (res.json());
@@ -62,7 +64,8 @@ displayCardModal =(cards) => {
     <div class=" flex gap-4 my-2">
       <button class="bg-[#00A96E] rounded-full px-3 py-1 text-white">${cards.status}</button>
       <p> Opened by ${cards.assignee}</p>
-      <p>${cards.updatedAt}</p>
+     <p>${new Date(cards.createdAt).getMonth()+1}/${new Date(cards.createdAt).getDate()}/${new Date(cards.createdAt).getFullYear()}</p>
+              
     </div>
 
     <!-- issue buttons -->
