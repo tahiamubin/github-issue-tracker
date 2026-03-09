@@ -169,7 +169,8 @@ function displayIssueButton (cards){
       // updateState(issueCardContainer.children.length);
 
      const issueCount = document.getElementById("issue-count");
-     issueCount.innerText = issueCardContainer.children.length
+     issueCount.innerText = issueCardContainer.children.length;
+     removeActive()
       
       
     }
