@@ -170,7 +170,7 @@ function displayIssueButton (cards){
 
      const issueCount = document.getElementById("issue-count");
      issueCount.innerText = issueCardContainer.children.length
-      
+     removeActive(); 
       
     }
 
