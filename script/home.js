@@ -1,8 +1,5 @@
 let allCard = [];
 
-
-
-
 const createElement = (arr) => {
     const htmlElement = arr.map((el)=>
     `
@@ -11,6 +8,19 @@ const createElement = (arr) => {
     return (htmlElement.join(" "));
     
 }
+
+const manageSpinner = (status) =>{
+  if (status == true){
+    document.getElementById("spinner").classList.add("hidden");
+    document.getElementById("issueCards").classList.remove("hidden");
+  }
+  else {
+    document.getElementById("issueCards").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
+  }
+
+}
+
 
 const removeActive = () => {
   const buttons = document.querySelectorAll(".show");
@@ -25,12 +35,14 @@ const removeActive = () => {
     const data = await (res.json());
     allCard = data.data;
     removeActive();
-    button.classList.add("active");
+   if (button) button.classList.add("active");
     
     displayIssueButton(allCard);
 }
 
 loadIssueButton();
+document.getElementById("all-btn").classList.add("active");
+
  async function loadCardDetails(id){ 
     const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
     const res = await fetch (url);
@@ -212,17 +224,6 @@ document.getElementById("issueBtn").addEventListener("click" , () =>{
 
   })
 })
-const manageSpinner = (status) =>{
-  if (status == true){
-    document.getElementById("spinner").classList.add("hidden");
-    document.getElementById("issueCards").classList.remove("hidden");
-  }
-  else {
-    document.getElementById("issueCards").classList.remove("hidden");
-    document.getElementById("spinner").classList.add("hidden");
-  }
-
-}
 
 // function updateState (length)
 // {
